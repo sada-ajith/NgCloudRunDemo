@@ -3,24 +3,24 @@ steps:
     args:
       - build
       - '-t'
-      - '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA'
+      - 'us.gcr.io/$PROJECT_ID/script-bytes:$COMMIT_SHA'
       - .
   - name: gcr.io/cloud-builders/docker
     args:
       - push
-      - '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA'
+      - 'us.gcr.io/$PROJECT_ID/script-bytes:$COMMIT_SHA'
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
     args:
       - run
       - deploy
-      - $_SERVICE_NAME
+      - 'script-bytes'
       - '--image'
-      - '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA'
+      - 'us.gcr.io/$PROJECT_ID/script-bytes:$COMMIT_SHA'
       - '--region'
-      - $_DEPLOY_REGION
+      - 'us-central1'
       - '--platform'
-      - $_PLATFORM
+      - 'managed'
     entrypoint: gcloud
 timeout: 1200s
 images:
-  - '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA'
+  - 'us.gcr.io/$PROJECT_ID/script-bytes:$COMMIT_SHA'
