@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 
-export interface Ace {
-  attr : string
-}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,8 +8,7 @@ export interface Ace {
 })
 export class AppComponent {
   title = 'ngcloudrundemo';
-  ANANANA = '';
   func() {
-    return 
+    return ''
   }
 }
