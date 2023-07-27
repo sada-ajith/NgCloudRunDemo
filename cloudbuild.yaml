@@ -1,10 +1,18 @@
 steps:
 
+  # Token replacement for setting config
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: "bash"
+    args:
+    - '-c'
+    - |
+        cd src
+        sed -ie 's/#{api}#/{_TEST}/g' app.component.ts
   # sonar analysis
   - name: 'sonarsource/sonar-scanner-cli'
     args:
     - '-Dsonar.host.url=http://34.121.16.65:9000'
-    - '-Dsonar.login=6cf445338813703a8c9c6a230c41ddad409419b1'
+    - '-Dsonar.login={_LOGIN_SECRET}'
     - '-Dsonar.projectKey=angular-build'
     - '-Dsonar.sources=.'
     - '-Dsonar.qualitygate.wait=true'

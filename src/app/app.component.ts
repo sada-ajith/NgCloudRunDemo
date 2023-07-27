@@ -9,7 +9,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'ngcloudrundemo';
   func() {
+    console.log('#{dev}#');
     return ''
-    
+
   }
+
 }
