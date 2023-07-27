@@ -1,4 +1,17 @@
 steps:
+  - name: gcr.io/cloud-builders/npm
+    args:
+        - install
+    dir: '/app'
+
+  # Run prod build
+  - name: gcr.io/cloud-builders/npm
+    args:
+        - run
+        - build
+        - '--prod'
+    dir: '/app'
+
   - name: gcr.io/cloud-builders/docker
     args:
       - build
