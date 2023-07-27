@@ -6,6 +6,7 @@ steps:
     args:
     - '-c'
     - |
+        ls
         cd /workspace/src
         sed -ie 's/#{api}#/{_TEST}/g' app.component.ts
   # sonar analysis
