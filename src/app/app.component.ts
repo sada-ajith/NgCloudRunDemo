@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+export interface Ace {
+  attr : string
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +10,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ngcloudrundemo';
+  ANANANA = '';
+  func() {
+    return 
+  }
 }

@@ -1,8 +1,23 @@
 steps:
+
+  # sonar analysis
+  - name: 'gcr.io/$PROJECT_ID/sonar-scanner:latest'
+    args:
+    - '-Dsonar.host.url=http://34.121.16.65:9000'
+    - '-Dsonar.login=6cf445338813703a8c9c6a230c41ddad409419b1'
+    - '-Dsonar.projectKey=angular-build'
+    - '-Dsonar.sources=.'
+    - '-Dsonar.qualitygate.wait=true'
+  # npm install
   - name: gcr.io/cloud-builders/npm
     args:
         - install
-    
+
+  # Lint code 
+  - name: gcr.io/cloud-builders/npm
+    args:
+      - run-script
+      - lint
 
   # Run prod build
   - name: gcr.io/cloud-builders/npm
@@ -11,16 +26,20 @@ steps:
         - build
         - '--prod'
 
+  # Dockerise build
   - name: gcr.io/cloud-builders/docker
     args:
       - build
       - '-t'
       - 'us.gcr.io/$PROJECT_ID/script-bytes:$COMMIT_SHA'
       - .
+  # Push docker image
   - name: gcr.io/cloud-builders/docker
     args:
       - push
       - 'us.gcr.io/$PROJECT_ID/script-bytes:$COMMIT_SHA'
+
+  # Deploy to cloud run
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
     args:
       - run
