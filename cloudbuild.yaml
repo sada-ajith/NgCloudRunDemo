@@ -1,7 +1,7 @@
 steps:
 
   # sonar analysis
-  - name: 'gcr.io/$PROJECT_ID/sonar-scanner:latest'
+  - name: 'sonarsource/sonar-scanner-cli'
     args:
     - '-Dsonar.host.url=http://34.121.16.65:9000'
     - '-Dsonar.login=6cf445338813703a8c9c6a230c41ddad409419b1'
