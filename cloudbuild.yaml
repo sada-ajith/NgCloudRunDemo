@@ -7,12 +7,12 @@ steps:
     - '-c'
     - |
         ls
-        sed -ie 's/#{api}#/{_TEST}/g' src/app/app.component.ts
+        sed -ie 's/#{api}#/${_TEST}/g' src/app/app.component.ts
   # sonar analysis
   - name: 'sonarsource/sonar-scanner-cli'
     args:
     - '-Dsonar.host.url=http://34.121.16.65:9000'
-    - '-Dsonar.login={_LOGIN_SECRET}'
+    - '-Dsonar.login=${_LOGIN_SECRET}'
     - '-Dsonar.projectKey=angular-build'
     - '-Dsonar.sources=.'
     - '-Dsonar.qualitygate.wait=true'
