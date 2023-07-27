@@ -8,6 +8,8 @@
 # RUN npm run build
 
 FROM nginx:1.23.0-alpine
+WORKDIR /workspace
 EXPOSE 8080
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /app/dist/ngcloudrundemo /usr/share/nginx/html
+COPY /dist/ngcloudrundemo /usr/share/nginx/html
+# COPY --from=build /app/dist/ngcloudrundemo /usr/share/nginx/html
