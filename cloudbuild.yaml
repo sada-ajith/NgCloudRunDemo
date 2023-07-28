@@ -6,7 +6,6 @@ steps:
     args:
     - '-c'
     - |
-        ls
         sed -ie 's/#{api}#/${_TEST}/g' src/app/app.component.ts
   # sonar analysis
   - name: 'sonarsource/sonar-scanner-cli'
